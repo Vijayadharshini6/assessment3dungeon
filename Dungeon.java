@@ -15,20 +15,25 @@ public class Dungeon {
 	        String adven = sc.nextLine();
 	         String[] advenarr = adven.split("\\s+");
 	         int rowad=Integer.parseInt(advenarr[0]);
-	         int colad=Integer.parseInt(advenarr[1]);		         		      
+	         int colad=Integer.parseInt(advenarr[1]);	
+	         System.out.println("Position of monster: ");
+		        String mons = sc.nextLine();
+		         String[] monsarr = mons.split("\\s+");
+		         int rowmons=Integer.parseInt(monsarr[0]);
+		         int colmons=Integer.parseInt(monsarr[1]);
 		        System.out.println("Position of gold: ");
 		        String gold = sc.nextLine();
-		         String[] goldarr = adven.split("\\s+");
+		         String[] goldarr = gold.split("\\s+");
 		         int rowgold=Integer.parseInt(goldarr[0]);
-		         int colgold=Integer.parseInt(goldarr[1]);		         			      
-			        int count=1;
-			        for(int i=1;i<=colgold;i++) {
-			        	count++;	
+		         int colgold=Integer.parseInt(goldarr[1]);
+		         int count=(Math.abs(rowad-rowgold)+Math.abs(colad-colgold));
+		         int monscount=(Math.abs(rowmons-rowgold)+Math.abs(colmons-colgold));
+		         if(monscount<count) {
+			        	System.out.println("No possible solution");
 			        }
-			        for(int i=rowgold;i>=1;i--) {
-			        	count++;	
-			        }
+			        else if(monscount>=count) {
 			        System.out.println("Minimum number of steps: "+count);
+			        }
 	}
 
 }

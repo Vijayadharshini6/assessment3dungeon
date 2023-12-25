@@ -21,36 +21,44 @@ public class Dungeon {
 		         String[] monsarr = mons.split("\\s+");
 		         int rowmons=Integer.parseInt(monsarr[0]);
 		         int colmons=Integer.parseInt(monsarr[1]);
+		         System.out.println("Position of Trigger: ");
+			        String trigger = sc.nextLine();
+			         String[] trigarr = trigger.split("\\s+");
+			         int rowtrig=Integer.parseInt(trigarr[0]);
+			         int coltrig=Integer.parseInt(trigarr[1]);
 		        System.out.println("Position of gold: ");
 		        String gold = sc.nextLine();
 		         String[] goldarr = gold.split("\\s+");
 		         int rowgold=Integer.parseInt(goldarr[0]);
-		         int colgold=Integer.parseInt(goldarr[1]);
+		         int colgold=Integer.parseInt(goldarr[1]);		        
 		         int count=(Math.abs(rowad-rowgold)+Math.abs(colad-colgold));
 		         int monscount=(Math.abs(rowmons-rowgold)+Math.abs(colmons-colgold));
-		         int i = rowad;
-		         int j = colad;
-		         if(monscount<count) {
-			        	System.out.println("No possible solution");
-			        }
-			        else if(monscount>=count) {
-			        System.out.println("Minimum number of steps: "+count);
-			        while (rowad != rowgold || colad != colgold) {
-		                System.out.print("(" + rowad + "," + colad + ")");
-		                if (colad < colgold) {
-		                    colad++;
-		                } else if (colad > colgold) {
-		                    colad--;
-		                } else if (rowad < rowgold) {
-		                    rowad++;
-		                } else if (rowad > rowgold) {
-		                    rowad--;
-		                }
-		                System.out.print(" ");
-		            }
-		            System.out.println("(" + rowgold + "," + colgold + ")");
+		         int counttigger = Math.abs(rowad - rowtrig) + Math.abs(colad - coltrig)
+	                + Math.abs(rowgold-rowtrig) + Math.abs(colgold-coltrig);
+
+//		         int i = rowad;
+//		         int j = colad;
+//		         if(monscount<count) {
+//			        	System.out.println("No possible solution");
+//			        }
+//			        else if(monscount>=count) {
+			        System.out.println("Minimum number of steps: "+counttigger);
+//			        while (rowad != rowgold || colad != colgold) {
+//		                System.out.print("("+rowad+","+colad+")");
+//		                if (colad<colgold) {
+//		                    colad++;
+//		                } else if (colad>colgold) {
+//		                    colad--;
+//		                } else if (rowad<rowgold) {
+//		                    rowad++;
+//		                } else if (rowad>rowgold) {
+//		                    rowad--;
+//		                }
+		               // System.out.print(" ");
+		           // }
+		          //  System.out.println("("+rowgold+","+colgold+")");
 		      
-			        }
+			      //  }
 	}
 
 }

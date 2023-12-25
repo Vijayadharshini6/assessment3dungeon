@@ -28,11 +28,28 @@ public class Dungeon {
 		         int colgold=Integer.parseInt(goldarr[1]);
 		         int count=(Math.abs(rowad-rowgold)+Math.abs(colad-colgold));
 		         int monscount=(Math.abs(rowmons-rowgold)+Math.abs(colmons-colgold));
+		         int i = rowad;
+		         int j = colad;
 		         if(monscount<count) {
 			        	System.out.println("No possible solution");
 			        }
 			        else if(monscount>=count) {
 			        System.out.println("Minimum number of steps: "+count);
+			        while (rowad != rowgold || colad != colgold) {
+		                System.out.print("(" + rowad + "," + colad + ")");
+		                if (colad < colgold) {
+		                    colad++;
+		                } else if (colad > colgold) {
+		                    colad--;
+		                } else if (rowad < rowgold) {
+		                    rowad++;
+		                } else if (rowad > rowgold) {
+		                    rowad--;
+		                }
+		                System.out.print(" ");
+		            }
+		            System.out.println("(" + rowgold + "," + colgold + ")");
+		      
 			        }
 	}
 

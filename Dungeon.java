@@ -16,25 +16,52 @@ public class Dungeon {
 	         String[] advenarr = adven.split("\\s+");
 	         int rowad=Integer.parseInt(advenarr[0]);
 	         int colad=Integer.parseInt(advenarr[1]);	
-	         System.out.println("Position of monster: ");
-		        String mons = sc.nextLine();
-		         String[] monsarr = mons.split("\\s+");
-		         int rowmons=Integer.parseInt(monsarr[0]);
-		         int colmons=Integer.parseInt(monsarr[1]);
-		         System.out.println("Position of Trigger: ");
-			        String trigger = sc.nextLine();
-			         String[] trigarr = trigger.split("\\s+");
-			         int rowtrig=Integer.parseInt(trigarr[0]);
-			         int coltrig=Integer.parseInt(trigarr[1]);
+//	         System.out.println("Position of monster: ");
+//		        String mons = sc.nextLine();
+//		         String[] monsarr = mons.split("\\s+");
+//		         int rowmons=Integer.parseInt(monsarr[0]);
+//		         int colmons=Integer.parseInt(monsarr[1]);
+//		         System.out.println("Position of Trigger: ");
+//			        String trigger = sc.nextLine();
+//			         String[] trigarr = trigger.split("\\s+");
+//			         int rowtrig=Integer.parseInt(trigarr[0]);
+//			         int coltrig=Integer.parseInt(trigarr[1]);
 		        System.out.println("Position of gold: ");
 		        String gold = sc.nextLine();
 		         String[] goldarr = gold.split("\\s+");
 		         int rowgold=Integer.parseInt(goldarr[0]);
-		         int colgold=Integer.parseInt(goldarr[1]);		        
+		         int colgold=Integer.parseInt(goldarr[1]);
+		         System.out.println("Enter the number of pits: ");
+		         int nopit=sc.nextInt();
+		         sc.nextLine();
+		         int[][] pits=new int[nopit][2];
+		         for (int i=0;i<nopit;i++) {
+		             System.out.println("Position of pit "+(i+1)+": ");
+		             String pit = sc.nextLine();
+		             String[] pitarr = pit.split("\\s+");
+		             pits[i][0] = Integer.parseInt(pitarr[0]);
+		             pits[i][1] = Integer.parseInt(pitarr[1]);
+		         }		        			        				       
 		         int count=(Math.abs(rowad-rowgold)+Math.abs(colad-colgold));
-		         int monscount=(Math.abs(rowmons-rowgold)+Math.abs(colmons-colgold));
-		         int counttigger = Math.abs(rowad - rowtrig) + Math.abs(colad - coltrig)
-	                + Math.abs(rowgold-rowtrig) + Math.abs(colgold-coltrig);
+		         boolean pathcount=true;
+		         for (int i=0;i<nopit;i++) {
+		             if (pathval(rowad,colad,rowgold,colgold,pits[i][0],pits[i][1])) {
+		                 pathcount = false;
+		                 break;
+		             }
+		         }
+		         if (pathcount) {
+		             System.out.println("Minimum number of steps: "+count);
+		         } else {
+		             System.out.println("No possible solution");
+		         }
+		     }		    
+		     private static boolean pathval(int rowad,int colad,int rowgold,int colgold,int pit1,int pit2) {		       
+	return (colad-colgold)*(pit1-colgold)==(rowad-rowgold)*(pit2-colgold)&& Math.min(colgold, pit2)<=colad&&colad<=Math.max(colgold,pit2)
+		    &&Math.min(rowgold,pit1)<=rowad&&rowad<=Math.max(rowgold,pit1);
+		       }
+//		         int monscount=(Math.abs(rowmons-rowgold)+Math.abs(colmons-colgold));
+//		         int counttigger = Math.abs(rowad - rowtrig) + Math.abs(colad - coltrig)+ Math.abs(rowgold-rowtrig) + Math.abs(colgold-coltrig);
 
 //		         int i = rowad;
 //		         int j = colad;
@@ -42,7 +69,7 @@ public class Dungeon {
 //			        	System.out.println("No possible solution");
 //			        }
 //			        else if(monscount>=count) {
-			        System.out.println("Minimum number of steps: "+counttigger);
+			       // System.out.println("Minimum number of steps: "+counttigger);
 //			        while (rowad != rowgold || colad != colgold) {
 //		                System.out.print("("+rowad+","+colad+")");
 //		                if (colad<colgold) {
@@ -59,6 +86,6 @@ public class Dungeon {
 		          //  System.out.println("("+rowgold+","+colgold+")");
 		      
 			      //  }
-	}
+	//}
 
 }
